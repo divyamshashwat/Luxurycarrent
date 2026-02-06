@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Semler Premium Experience</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            outline: none;
+            border: none;
+        }
+
+        /* Hide any potential UI from specific mobile browsers */
+        video::-webkit-media-controls {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="videoElement" playsinline autoplay>
+        <source src="puneer.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        const video = document.getElementById('videoElement');
+
+        function startExperience() {
+            video.volume = 1.0;
+            video.play().catch(error => {
+                console.log("Autoplay was prevented. Retrying...");
+                // If autoplay is blocked, we might need a backup, 
+                // but per user request we just try to play.
+            });
+
+            // Request fullscreen
+            if (video.requestFullscreen) {
+                video.requestFullscreen().catch(() => { });
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen().catch(() => { });
+            }
+        }
+
+        // Try to play immediately
+        window.onload = startExperience;
+
+        // Loop the video
+        video.onended = function () {
+            video.play();
+        };
+
+        // Prevent right click to hide controls menu
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+</body>
+
+</html>
