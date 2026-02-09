@@ -7,6 +7,7 @@ import { BrandsSection } from '@/sections/BrandsSection';
 import { LeasingSection } from '@/sections/LeasingSection';
 import { AboutSection } from '@/sections/AboutSection';
 import { EventsSection } from '@/sections/EventsSection';
+import { CtaLinesSection } from '@/sections/CtaLinesSection';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <LeasingSection />
         <AboutSection />
         <EventsSection />
+        <CtaLinesSection />
       </main>
       <Footer />
     </div>
